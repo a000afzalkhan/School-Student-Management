@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students | CampusFlow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<aside class="sidebar">
+    <a class="brand" th:href="@{/}"><span class="brand-mark">C</span><span>Campus<span>Flow</span></span></a>
+    <p class="sidebar-label">SCHOOL SPACE</p>
+    <nav class="nav-links"><a th:href="@{/}"><b>01</b> Overview</a><a class="active" th:href="@{/students}"><b>02</b> Students</a><a th:href="@{/students/new}"><b>03</b> Admissions</a></nav>
+    <div class="sidebar-user"><span class="avatar">AK</span><div><strong>Academic Office</strong><small>Administrator</small></div><form th:action="@{/logout}" method="post"><button type="submit" title="Sign out">&#8594;</button></form></div>
+</aside>
+<main class="main">
+    <header class="page-header"><div><p class="eyebrow">STUDENT DIRECTORY</p><h1>All students</h1><p>Search and manage your complete student roster.</p></div><a class="button primary" th:href="@{/students/new}">Add student <span>&#8594;</span></a></header>
+    <section class="panel directory-panel">
+        <form class="filter-bar" th:action="@{/students}" method="get"><label class="search-box"><span>Search</span><input name="search" th:value="${search}" placeholder="Name, ID, guardian or email"></label><label class="grade-select"><span>Grade</span><select name="grade"><option value="">All grades</option><option th:each="item : ${grades}" th:value="${item}" th:text="${item}" th:selected="${item == selectedGrade}">Grade 10</option></select></label><button class="button dark" type="submit">Filter records</button></form>
+        <div class="directory-info"><strong th:text="${#lists.size(students) + ' students found'}">8 students found</strong><span>Click a row to open the complete record.</span></div>
+        <div class="table-wrap"><table><thead><tr><th>STUDENT</th><th>CLASS</th><th>ATTENDANCE</th><th>FEES</th><th>STATUS</th><th></th></tr></thead><tbody>
+            <tr th:each="student : ${students}"><td><a class="table-student" th:href="@{'/students/' + ${student.id}}"><span class="avatar" th:text="${student.initials}">AS</span><span><strong th:text="${student.fullName}">Aarav Sharma</strong><small th:text="${student.studentCode}">CF-1001</small></span></a></td><td><strong th:text="${student.grade + ' ' + student.section}">Grade 10 A</strong><small th:text="${student.guardianName}">Priya Sharma</small></td><td><div class="attendance-bar"><span><i th:style="${'width:' + student.attendancePercentage + '%'}"></i></span><b th:text="${#numbers.formatDecimal(student.attendancePercentage, 0, 0) + '%'}">94%</b></div></td><td><span class="status-badge" th:classappend="${student.feeStatus.color}" th:text="${student.feeStatus.label}">Clear</span></td><td><span class="enrollment"><i th:classappend="${student.enrollmentStatus.color}"></i><span th:text="${student.enrollmentStatus.label}">Active</span></span></td><td><a class="table-arrow" th:href="@{'/students/' + ${student.id}}">&#8594;</a></td></tr>
+            <tr th:if="${#lists.isEmpty(students)}"><td class="no-records" colspan="6">No students match this filter. Try a different search.</td></tr>
+        </tbody></table></div>
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | CampusFlow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<aside class="sidebar">
+    <a class="brand" th:href="@{/}"><span class="brand-mark">C</span><span>Campus<span>Flow</span></span></a>
+    <div class="school-chip"><span></span>Greenfield Campus</div>
+    <p class="sidebar-label">ADMINISTRATION</p>
+    <nav class="nav-links"><a class="active" th:href="@{/}"><b>01</b> Overview</a><a th:href="@{/students}"><b>02</b> Students</a><a th:href="@{/students/new}"><b>03</b> Admissions</a></nav>
+    <div class="sidebar-user"><span class="avatar">AK</span><div><strong>Academic Office</strong><small>Administrator</small></div><form th:action="@{/logout}" method="post"><button type="submit" title="Sign out">&#8594;</button></form></div>
+</aside>
+<main class="main dashboard-main">
+    <header class="app-topbar"><p>Thursday, 31 July</p><a class="button primary" th:href="@{/students/new}">Add student <span>&#8594;</span></a></header>
+    <section class="dashboard-hero"><div><p class="eyebrow">ACADEMIC YEAR 2026–27</p><h1>Good morning, Admin.</h1><p>One calm place to keep every learner moving forward.</p><a class="hero-link" th:href="@{/students}">Open student directory <span>&#8594;</span></a></div><div class="hero-pulse"><span>ATTENDANCE PULSE</span><strong><span th:text="${metrics.averageAttendance}">85</span>%</strong><small>School average this term</small></div></section>
+    <section class="metric-grid">
+        <article class="metric"><span class="metric-mark lilac">ST</span><div><p>Total students</p><strong th:text="${metrics.totalStudents}">8</strong><small>Enrolled across all grades</small></div></article>
+        <article class="metric"><span class="metric-mark green">AC</span><div><p>Active today</p><strong th:text="${metrics.activeStudents}">7</strong><small>Currently enrolled</small></div></article>
+        <article class="metric"><span class="metric-mark blue">AT</span><div><p>Attendance</p><strong><span th:text="${metrics.averageAttendance}">85</span>%</strong><small>School-wide performance</small></div></article>
+        <article class="metric"><span class="metric-mark amber">FE</span><div><p>Fee follow-ups</p><strong th:text="${metrics.pendingFees}">4</strong><small>Pending or overdue accounts</small></div></article>
+    </section>
+    <section class="content-grid">
+        <article class="panel student-panel"><div class="panel-heading"><div><p>RECENT ENROLMENTS</p><h2>Student directory</h2></div><a th:href="@{/students}">View all <span>&#8594;</span></a></div><div class="roster"><a class="student-row" th:each="student : ${recentStudents}" th:href="@{'/students/' + ${student.id}}"><span class="avatar large" th:text="${student.initials}">AS</span><span class="student-copy"><strong th:text="${student.fullName}">Aarav Sharma</strong><small><span th:text="${student.studentCode}">CF-1001</span> &middot; <span th:text="${student.grade + ' ' + student.section}">Grade 10 A</span></small></span><span class="attendance"><b th:text="${#numbers.formatDecimal(student.attendancePercentage, 0, 0) + '%'}">94%</b><small>attendance</small></span><span class="chevron">&#8250;</span></a></div></article>
+        <aside class="panel attention-panel"><div class="panel-heading"><div><p>NEEDS ATTENTION</p><h2>Follow-ups</h2></div><span class="alert-count" th:text="${#lists.size(attentionStudents) + ' items'}">2 items</span></div><div class="attention-list"><a class="attention-item" th:each="student : ${attentionStudents}" th:href="@{'/students/' + ${student.id}}"><span class="severity" th:classappend="${student.feeStatus.color == 'rose' ? 'high' : 'medium'}"></span><span><strong th:text="${student.fullName}">Vihaan Mehta</strong><small th:text="${student.attendancePercentage < 80 ? 'Attendance below 80%' : 'Fee payment needs review'}">Attendance below 80%</small></span><span class="status-badge" th:classappend="${student.feeStatus.color}" th:text="${student.feeStatus.label}">Overdue</span></a><p class="empty-copy" th:if="${#lists.isEmpty(attentionStudents)}">Everything is on track right now.</p></div><div class="term-card"><span>TERM 1 REVIEW</span><strong>Keep progress visible</strong><p>Attendance and fee alerts stay together, so important follow-ups don't get lost.</p><a th:href="@{/students}">Review student records &#8594;</a></div></aside>
+    </section>
+</main>
+</body>
+</html>
