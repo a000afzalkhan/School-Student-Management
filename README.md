@@ -1,238 +1,247 @@
-🎓 CampusFlow — Student Management Portal
-A modern, secure school administration web application built with Java Spring Boot. CampusFlow provides a protected dashboard, a searchable student directory, a student admission form, and in-place updates for attendance, fees, and enrolment status.
+# 🎓 CampusFlow – Student Management Portal
 
-https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white
-https://img.shields.io/badge/Spring%2520Boot-3.5-6DB33F?style=for-the-badge&logo=springboot&logoColor=white
-https://img.shields.io/badge/Spring%2520Security-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white
-https://img.shields.io/badge/Thymeleaf-005F0F?style=for-the-badge&logo=thymeleaf&logoColor=white
-https://img.shields.io/badge/H2-0000BB?style=for-the-badge&logo=h2&logoColor=white
-https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white
+A modern and secure **Student Management System** built using Java and Spring Boot. CampusFlow is designed to simplify school administration by providing an easy-to-use platform for managing student records, admissions, attendance, fees, and enrolment status.
 
-📋 Table of Contents
-About the Project
+The application features a secure admin dashboard, searchable student directory, student registration, and real-time dashboard statistics.
 
-Features
+## ✨ Key Features
 
-Tech Stack
+- 🔐 **Secure Authentication** – Login system powered by Spring Security and BCrypt password hashing.
+- 📊 **Admin Dashboard** – View total students, active enrolments, average attendance, and pending fees.
+- 👨‍🎓 **Student Management** – Register, view, and manage student records.
+- 🔍 **Smart Search** – Search students by name, student code, guardian name, or email.
+- 🎯 **Grade Filtering** – Filter students according to their grade.
+- 📝 **Student Admission** – Register new students with form validation and automatically generated student IDs.
+- 📅 **Attendance Management** – Update and monitor student attendance percentages.
+- 💰 **Fee Management** – Track fee payment status and pending fees.
+- ⚠️ **Penalty Calculation** – Calculate attendance-related and late-fee penalties.
+- 🚫 **Admission Cancellation** – Cancel eligible student admissions with a specified reason.
+- 📱 **Responsive UI** – Clean and user-friendly interface using Thymeleaf, HTML, and CSS.
+- 💾 **Database Management** – Store and manage student information using an H2 in-memory database.
 
-Getting Started
+## 🛠️ Tech Stack
 
-Prerequisites
+| Technology | Purpose |
+|---|---|
+| Java 21 | Programming Language |
+| Spring Boot 3.5 | Backend Framework |
+| Spring MVC | Web Application Architecture |
+| Spring Security | Authentication & Authorization |
+| Spring Data JPA | Database Operations |
+| Hibernate | ORM |
+| Thymeleaf | Frontend Template Engine |
+| HTML5 & CSS3 | User Interface |
+| H2 Database | In-Memory Database |
+| Maven | Dependency Management & Build Tool |
+| JUnit | Testing |
 
-Run Locally
+## 🏗️ Project Architecture
 
-Verify with Tests
+The project follows a layered architecture to keep the application organized and maintainable.
 
-Default Credentials
+- **Controller Layer:** Handles HTTP requests and application routes.
+- **Service Layer:** Contains business logic and application operations.
+- **Repository Layer:** Handles database interactions using Spring Data JPA.
+- **Model Layer:** Defines student entities and related enums.
+- **DTO Layer:** Transfers and validates form data.
+- **Config Layer:** Manages application configuration and security.
 
-Usage
+## 📂 Project Structure
 
-Dashboard
-
-Student Directory
-
-Student Admission
-
-Student Detail & Updates
-
-Project Structure
-
-API Endpoints
-
-Database
-
-Contributing
-
-License
-
-Contact
-
-📖 About the Project
-CampusFlow is a school administration application that simplifies the management of student records. It is built with the same Java Spring Boot stack as its parent project and offers a clean, role-protected interface for administrators. The app comes pre-loaded with eight sample student records and stores any changes in an embedded H2 database for the duration of the session.
-
-Whether you're an educator, administrator, or developer exploring Spring Boot, CampusFlow demonstrates a complete web application with authentication, CRUD operations, search, filtering, and dynamic dashboard metrics.
-
-✨ Features
-🔐 Secure Authentication — Login-protected dashboard using Spring Security with BCrypt password hashing.
-
-📊 Dynamic Dashboard — Real-time metrics: total students, active enrolments, average attendance, and pending fee counts. Highlights recent students and those needing attention (low attendance or overdue fees).
-
-🔍 Searchable Student Directory — Search by name, student code, guardian name, or email. Filter by grade.
-
-📝 Student Admission Form — Register new students with validation. Auto-generated student codes (e.g., CF-1001).
-
-✏️ In-Place Updates — Update attendance percentage, fee status, and enrolment status directly from the student detail page.
-
-🚫 Admission Cancellation — Cancel admissions with a predefined reason (only eligible students).
-
-⚠️ Penalty Calculation — Automatic attendance and late-fee penalties computed on the student detail page.
-
-💾 Embedded H2 Database — Zero-configuration, in-memory database with an H2 console for debugging.
-
-🎨 Clean UI — Responsive templates built with Thymeleaf, HTML5, and CSS3.
-
-🛠 Tech Stack
-Layer	Technology
-Language	Java 21
-Framework	Spring Boot 3.5
-Web	Spring MVC, Thymeleaf
-Persistence	Spring Data JPA
-Security	Spring Security (BCrypt)
-Validation	Spring Boot Starter Validation
-Database	H2 (in-memory)
-Build Tool	Maven
-Frontend	HTML5, CSS3
-🚀 Getting Started
-Prerequisites
-Java 21 (or Java 23 as shown in the example below)
-
-Maven (or use the included Maven Wrapper)
-
-Run Locally
-Clone the repository
-
-bash
-git clone https://github.com/a000afzalkhan/School-Student-Management.git
-cd School-Student-Management
-Set your JAVA_HOME (Windows example)
-
-powershell
-$env:JAVA_HOME = 'C:\Program Files\Java\jdk-23'
-Run the application
-
-bash
-..\mvnw.cmd -f pom.xml spring-boot:run
-On macOS/Linux, use ./mvnw instead.
-
-Open your browser
-
-text
-http://localhost:8081
-Verify with Tests
-bash
-$env:JAVA_HOME = 'C:\Program Files\Java\jdk-23'
-..\mvnw.cmd -f pom.xml test
-🔑 Default Credentials
-Username	Password
-admin	admin123
-⚠️ Security Note: These credentials are for development only. Change them before deploying to production.
-
-📱 Usage
-Dashboard
-View total students, active enrolments, average attendance, and pending fees.
-
-See the 6 most recently added students.
-
-See students needing attention (attendance < 80% or overdue fees).
-
-Student Directory
-Search by name, student code, guardian name, or email.
-
-Filter by grade.
-
-Click any student to view or edit their details.
-
-Student Admission
-Navigate to "New Student" to open the admission form.
-
-Fill in required fields (name, email, guardian, grade, section, attendance).
-
-A unique student code is generated automatically (e.g., CF-1001).
-
-Student Detail & Updates
-View all student information.
-
-Update attendance percentage, fee status, and enrolment status.
-
-Cancel admission with a reason (only if eligible).
-
-View calculated attendance and late-fee penalties.
-
-📁 Project Structure
-text
+```text
 School-Student-Management/
+│
 ├── src/
 │   ├── main/
 │   │   ├── java/com/campusflow/
 │   │   │   ├── config/
-│   │   │   │   ├── DataSeeder.java          # Seeds sample student data
-│   │   │   │   └── SecurityConfig.java      # Spring Security configuration
+│   │   │   │   ├── DataSeeder.java
+│   │   │   │   └── SecurityConfig.java
+│   │   │   │
 │   │   │   ├── controller/
-│   │   │   │   └── SchoolController.java    # All web routes
+│   │   │   │   └── SchoolController.java
+│   │   │   │
 │   │   │   ├── dto/
 │   │   │   │   ├── AdmissionCancellationForm.java
 │   │   │   │   ├── DashboardMetrics.java
 │   │   │   │   ├── StudentRegistrationForm.java
 │   │   │   │   └── StudentUpdateForm.java
+│   │   │   │
 │   │   │   ├── model/
-│   │   │   │   ├── CancellationReason.java  # Enum
-│   │   │   │   ├── EnrollmentStatus.java    # Enum
-│   │   │   │   ├── FeeStatus.java           # Enum
-│   │   │   │   └── Student.java             # JPA Entity
+│   │   │   │   ├── CancellationReason.java
+│   │   │   │   ├── EnrollmentStatus.java
+│   │   │   │   ├── FeeStatus.java
+│   │   │   │   └── Student.java
+│   │   │   │
 │   │   │   ├── repository/
 │   │   │   │   └── StudentRepository.java
+│   │   │   │
 │   │   │   ├── service/
-│   │   │   │   └── StudentService.java      # Business logic
-│   │   │   └── CampusFlowApplication.java   # Main entry point
+│   │   │   │   └── StudentService.java
+│   │   │   │
+│   │   │   └── CampusFlowApplication.java
+│   │   │
 │   │   └── resources/
-│   │       ├── static/                      # CSS, JS, images
-│   │       ├── templates/                   # Thymeleaf templates
-│   │       │   ├── dashboard.html
-│   │       │   ├── login.html
-│   │       │   ├── student-detail.html
-│   │       │   ├── student-form.html
-│   │       │   └── students.html
-│   │       └── application.properties       # App configuration
-│   └── test/java/com/campusflow/            # Unit & integration tests
-├── pom.xml                                  # Maven dependencies
+│   │       ├── static/
+│   │       ├── templates/
+│   │       └── application.properties
+│   │
+│   └── test/
+│
+├── Dockerfile
+├── pom.xml
 └── README.md
-🔌 API Endpoints
-Method	Endpoint	Description
-GET	/	Dashboard with metrics
-GET	/students	Student directory (search & filter)
-GET	/students/new	New student admission form
-POST	/students	Create a new student
-GET	/students/{id}	Student detail page
-POST	/students/{id}/record	Update student record
-POST	/students/{id}/cancel-admission	Cancel admission
-GET	/login	Login page
-🗄 Database
-Type: H2 In-Memory
+```
 
-JDBC URL: jdbc:h2:mem:campusflow;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+## ⚙️ Getting Started
 
-Username: sa
+Follow these steps to run the project on your local machine.
 
-Password: (empty)
+### Prerequisites
 
-H2 Console: http://localhost:8081/h2-console
+Make sure you have installed:
 
-💡 Data is not persisted across restarts. The app seeds 8 sample students on every startup.
+- Java JDK 21 or above
+- Apache Maven
+- IntelliJ IDEA / VS Code
+- Git
 
-🤝 Contributing
-Contributions are welcome! Here's how you can help:
+### 1. Clone the Repository
 
-Fork the repository
+```bash
+git clone https://github.com/a000afzalkhan/School-Student-Management.git
+```
 
-Create a feature branch (git checkout -b feature/amazing-feature)
+### 2. Navigate to Project Directory
 
-Commit your changes (git commit -m 'Add amazing feature')
+```bash
+cd School-Student-Management
+```
 
-Push to the branch (git push origin feature/amazing-feature)
+### 3. Build the Project
 
-Open a Pull Request
+```bash
+mvn clean install
+```
 
-Please ensure your code follows the existing style and includes appropriate tests.
+### 4. Run the Application
 
-📄 License
-This project is open-source and available for educational and personal use. Please check with the repository owner for specific licensing terms.
+```bash
+mvn spring-boot:run
+```
 
-📬 Contact
-Repository Owner: a000afzalkhan
+### 5. Open in Browser
 
-Project Link: https://github.com/a000afzalkhan/School-Student-Management
+```text
+http://localhost:8081
+```
 
-<div align="center">
-⭐ If you find this project useful, please give it a star!
+## 🔑 Default Login Credentials
 
-Made with ❤️ using Java Spring Boot
+Use the following credentials to access the admin dashboard in the development setup.
+
+| Field | Credentials |
+|---|---|
+| Username | `admin` |
+| Password | `admin123` |
+
+**Security Note:** These are development credentials. Change them before using the application in a production environment.
+
+## 📱 Application Modules
+
+### 1. Admin Dashboard
+- Total number of students.
+- Active student enrolments.
+- Average attendance percentage.
+- Pending fee information.
+- Recently registered students.
+- Students requiring attention.
+
+### 2. Student Directory
+- View all registered students.
+- Search student information.
+- Filter students by grade.
+- Access individual student profiles.
+
+### 3. Student Admission
+- Register new students.
+- Validate admission information.
+- Generate unique student codes automatically.
+
+### 4. Student Details & Updates
+- View complete student information.
+- Update attendance percentages.
+- Manage fee payment status.
+- Update enrolment status.
+- Cancel eligible admissions.
+
+## 🔌 Application Routes
+
+| HTTP Method | Endpoint | Description |
+|---|---|---|
+| GET | `/` | Admin Dashboard |
+| GET | `/login` | Login Page |
+| GET | `/students` | Student Directory |
+| GET | `/students/new` | Admission Form |
+| POST | `/students` | Register Student |
+| GET | `/students/{id}` | Student Details |
+| POST | `/students/{id}/record` | Update Student Record |
+| POST | `/students/{id}/cancel-admission` | Cancel Admission |
+
+## 🗄️ Database Configuration
+
+CampusFlow currently uses an H2 in-memory database.
+
+**Database Details:**
+
+- Database: H2
+- Database Name: `campusflow`
+- Username: `sa`
+- Password: Empty
+- JDBC URL: `jdbc:h2:mem:campusflow;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE`
+
+### H2 Database Console
+
+Open:
+
+```text
+http://localhost:8081/h2-console
+```
+
+Use the JDBC URL and credentials mentioned above.
+
+**Note:** The database is in-memory, so application data does not persist after restarting the application. Eight sample student records are loaded during startup.
+
+## 🧪 Running Tests
+
+Execute the following command to run the project's tests:
+
+```bash
+mvn test
+```
+
+## 🚀 Future Enhancements
+
+Some features that could be added in future versions:
+
+- [ ] MySQL / PostgreSQL database integration
+- [ ] Student and Teacher role management
+- [ ] Parent login portal
+- [ ] Student performance reports
+- [ ] Fee payment gateway integration
+- [ ] Email and notification system
+- [ ] REST API integration
+- [ ] Cloud deployment
+
+## 👨‍💻 Author
+
+**MD Afzal Khan**
+
+- GitHub: [@a000afzalkhan](https://github.com/a000afzalkhan)
+- Project Repository: [School-Student-Management](https://github.com/a000afzalkhan/School-Student-Management)
+
+---
+
+⭐ If you find this project useful, consider giving it a star!
+
+**Built with ❤️ using Java and Spring Boot.**
